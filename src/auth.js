@@ -1,7 +1,9 @@
 import loadHeader from './header-component.js';
 import { auth } from './firebase.js';
 
-loadHeader();
+const options = { noAuth: true };
+
+loadHeader(options);
 
 const ui = new firebaseui.auth.AuthUI(auth);
 
