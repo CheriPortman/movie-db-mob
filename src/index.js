@@ -5,6 +5,7 @@ import { updateSearchBar } from './search-component.js';
 import { updatePagingInfo } from './paging-component.js';
 import { readFromQuery } from './hash-query.js';
 import makeSearchMovieUrl from './make-search-movie-url.js';
+import { auth } from '../src/firebase.js';
 
 loadHeader();
 
@@ -14,7 +15,9 @@ const movieContainer = document.getElementById('movie-container');
 
 window.addEventListener('hashchange', loadQuery); 
 
-loadQuery();
+auth.onAuthStateChanged(() => {
+    loadQuery();
+});
 
 function loadQuery() {
     const existingQuery = window.location.hash.slice(1);

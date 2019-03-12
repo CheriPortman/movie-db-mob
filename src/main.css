@@ -47,6 +47,16 @@ li {
     transition:  background .2s linear;
 }
 
+li .favorite-star {
+    align-self: flex-end;
+    margin-right: 5px;
+    cursor: pointer;
+    top: 0;
+    right: 2px;
+    color: gold;
+    user-select: none;
+}
+
 li h2 {
     flex-shrink: 2;
 }

@@ -26,10 +26,12 @@ export default function loadMovieList(movies) {
     movies.forEach(movie => {
         const dom = makeMovieCard(movie);
         const favoriteStar = dom.querySelector('.favorite-star');
+        
+        const userId = auth.currentUser.uid;
+        const userFavoritesRef = favoritesByUserRef.child(userId);
+        const userFavoriteMovieRef = userFavoritesRef.child(movie.id);
+
         favoriteStar.addEventListener('click', () => {
-            const userId = auth.currentUser.uid;
-            const userFavoritesRef = favoritesByUserRef.child(userId);
-            const userFavoriteMovieRef = userFavoritesRef.child(movie.id);
             userFavoriteMovieRef.set({
                 id: movie.id,
                 title: movie.title,
