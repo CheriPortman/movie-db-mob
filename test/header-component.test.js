@@ -30,3 +30,22 @@ test('update user profile', assert => {
     //assert
     assert.htmlEqual(result, expected);
 });
+
+test('update user profile with no avatar', assert => {
+    //arrange
+    const user = {
+        displayName: 'Chris Piccaro',
+        photoURL: null
+    };
+    const expected = /*html*/ `
+        <div class="profile">
+            <img src="./assets/default-avatar.png" alt="Avatar of Chris Piccaro">
+            <span>Chris Piccaro</span>
+            <button>Sign Out</button>
+        </div>
+    `;
+    //act
+    const result = updateUser(user);
+    //assert
+    assert.htmlEqual(result, expected);
+});

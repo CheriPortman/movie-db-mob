@@ -14,9 +14,10 @@ export function makeHeader() {
 }
 
 export function updateUser(user) {
+    const avatar = user.photoURL || './assets/default-avatar.png';
     const html = /*html*/ `
         <div class="profile">
-        <img src="${user.photoURL}" alt="Avatar of ${user.displayName}">
+        <img src="${avatar}" alt="Avatar of ${user.displayName}">
             <span>${user.displayName}</span>
             <button>Sign Out</button>
         </div>

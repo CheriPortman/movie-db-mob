@@ -7,14 +7,31 @@
 
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-auth.js"></script>
-    
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-database.js"></script>
+
     <link rel="stylesheet" href="src/main.css">
     <link rel="stylesheet" href="src/header.css">
 </head>
 <body>
     <div id="header-container"></div>
 
-    <main></main>
+    <main>
+        <form id="form">
+            <input type="search" id="search-bar">
+            <button>Yeet</button>
+        </form>
+        <p id="prompt">Yeet a search!</p>
+        <section id="movie-container" class="hidden">
+            <section>
+                <button id="previous-button">&lt; Previous</button>
+                <span id="current-page">1</span>
+                of
+                <span id="total-pages">42</span>
+                <button id="next-button">Next &gt;</button>
+            </section>
+            <ul id="movie-list"></ul>
+        </section>
+    </main>
 
     <script type="module" src="src/index.js"></script>
 </body>
