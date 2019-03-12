@@ -26,20 +26,51 @@ export default function loadMovieList(movies) {
     movies.forEach(movie => {
         const dom = makeMovieCard(movie);
         const favoriteStar = dom.querySelector('.favorite-star');
-        
+
         const userId = auth.currentUser.uid;
         const userFavoritesRef = favoritesByUserRef.child(userId);
         const userFavoriteMovieRef = userFavoritesRef.child(movie.id);
+        userFavoriteMovieRef.once('value')
+            .then(snapshot => {
+                const value = snapshot.val();
+                let isFavorite = false;
+                if(value) {
+                    addFavorite();
+                }
+                else {
+                    removeFavorite();
+                }
 
-        favoriteStar.addEventListener('click', () => {
-            userFavoriteMovieRef.set({
-                id: movie.id,
-                title: movie.title,
-                poster_path: movie.poster_path,
-                overview: movie.overview,
-                release_date: movie.release_date
+                function addFavorite() {
+                    isFavorite = true;
+                    favoriteStar.textContent = '★';
+                    favoriteStar.classList.add('favorite');
+                }
+
+                function removeFavorite() {
+                    isFavorite = false;
+                    favoriteStar.textContent = '☆';
+                    favoriteStar.classList.remove('favorite');
+                }
+
+                favoriteStar.addEventListener('click', () => {
+                    if(isFavorite) {
+                        userFavoriteMovieRef.remove();
+                        removeFavorite();
+                    }
+                    else {
+                        userFavoritesRef.set({
+                            id: movie.id,
+                            title: movie.title,
+                            poster_path: movie.poster_path,
+                            overview: movie.overview,
+                            release_date: movie.release_date
+                        });
+                        addFavorite();
+                    }
+                });
             });
-        });
+
         movieList.appendChild(dom);
     });
 }
