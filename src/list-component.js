@@ -59,7 +59,7 @@ export default function loadMovieList(movies) {
                         removeFavorite();
                     }
                     else {
-                        userFavoritesRef.set({
+                        userFavoriteMovieRef.set({
                             id: movie.id,
                             title: movie.title,
                             poster_path: movie.poster_path,
