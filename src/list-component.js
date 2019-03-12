@@ -1,6 +1,9 @@
+import { auth, favoritesByUserRef } from '../src/firebase.js';
+
 export function makeMovieCard(movie) {
     const html = /*html*/`
         <li>
+            <span class="favorite-star">☆</span>
             <h2>${movie.title}</h2>
             <img src="https://image.tmdb.org/t/p/original${movie.poster_path}">
             <div>${getYear(movie.release_date)}</div>
@@ -22,6 +25,19 @@ export default function loadMovieList(movies) {
     clearList();
     movies.forEach(movie => {
         const dom = makeMovieCard(movie);
+        const favoriteStar = dom.querySelector('.favorite-star');
+        favoriteStar.addEventListener('click', () => {
+            const userId = auth.currentUser.uid;
+            const userFavoritesRef = favoritesByUserRef.child(userId);
+            const userFavoriteMovieRef = userFavoritesRef.child(movie.id);
+            userFavoriteMovieRef.set({
+                id: movie.id,
+                title: movie.title,
+                poster_path: movie.poster_path,
+                overview: movie.overview,
+                release_date: movie.release_date
+            });
+        });
         movieList.appendChild(dom);
     });
 }
