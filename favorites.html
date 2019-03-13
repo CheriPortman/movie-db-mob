@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Movies</title>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-database.js"></script>
+
+    <link rel="stylesheet" href="src/favorites.css">
+    <link rel="stylesheet" href="src/header.css">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main>
+        <a href="./index.html">Go back to search movies</a>
+        <h1>Your Fave Flix</h1>
+        <ul id="movie-list"></ul>
+    </main>
+
+    <script type="module" src="src/favorites.js"></script>
+</body>
+</html>
