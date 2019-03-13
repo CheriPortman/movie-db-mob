@@ -17,3 +17,12 @@ h1.header-title {
     flex-grow: 2
 }
 
+.profile button {
+    margin-left: 5px;
+}
+
+.profile img {
+    width: 32px;
+    border-radius: 100%;
+    margin-right: 5px;
+}
